@@ -2,24 +2,37 @@
 function Hero() {
 
   return (
-    <div className="bg-yellow-900">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut voluptates sint deleniti magni repellat porro quaerat, natus magnam, tempora, neque ab dicta nulla enim maxime molestias! Eum laborum accusamus corporis?
+    <div className="bg-yellow-900 m-12">
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
 
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
 
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque optio, facere voluptatibus dolorem consectetur temporibus praesentium minus veniam hic ipsa sequi sed alias eligendi consequatur dolore expedita error quas maxime?
 
 
 
