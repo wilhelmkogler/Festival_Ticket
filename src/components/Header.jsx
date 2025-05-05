@@ -26,7 +26,7 @@ function Header({ darkMode, toggleDarkMode }) {
             LOGO
           </NavLink>
 
-          <NavLink to="/festival" className={navLinkClass}>Browse</NavLink>
+          <NavLink to="/festivals" className={navLinkClass}>Festivals</NavLink>
           <NavLink to="/menu" className={navLinkClass}>Prices</NavLink>
           <NavLink to="/about" className={navLinkClass}>About</NavLink>
           <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
@@ -40,7 +40,7 @@ function Header({ darkMode, toggleDarkMode }) {
 
       {/* ✅ Mobil menü ikon */}
       <div className="lg:hidden flex justify-between items-center px-4 py-4">
-        <NavLink to="/" className={`${darkMode ? "text-white" : "text-black"} font-bold`}>LOGO</NavLink>
+        <NavLink to="/" className={`${darkMode ? "text-white" : "text-black"} text-xl font-bold`}>LOGO</NavLink>
         <button onClick={() => setMenuOpen(true)}>
           <Menu size={30} className={`${darkMode ? "text-white" : "text-black"} `} />
         </button>
@@ -63,7 +63,7 @@ function Header({ darkMode, toggleDarkMode }) {
           </button>
         </div>
         <nav className={`${darkMode ? "text-white" : "text-black"} flex flex-col items-center gap-6 mt-10 text-lg font-semibold`}>
-          <NavLink to="/festival" className={`${darkMode ? "text-white" : "text-black"} px-4 py-2 rounded-full text-lg transition font-semibold`} onClick={() => setMenuOpen(false)}>Browse</NavLink>
+          <NavLink to="/festivals" className={`${darkMode ? "text-white" : "text-black"} px-4 py-2 rounded-full text-lg transition font-semibold`} onClick={() => setMenuOpen(false)}>Festivals</NavLink>
           <NavLink to="/menu" className={`${darkMode ? "text-white" : "text-black"} px-4 py-2 rounded-full text-lg transition font-semibold`} onClick={() => setMenuOpen(false)}>Prices</NavLink>
           <NavLink to="/about" className={`${darkMode ? "text-white" : "text-black"} px-4 py-2 rounded-full text-lg transition font-semibold`} onClick={() => setMenuOpen(false)}>About</NavLink>
           <NavLink to="/contact" className={`${darkMode ? "text-white" : "text-black"} px-4 py-2 rounded-full text-lg transition font-semibold`} onClick={() => setMenuOpen(false)}>Contact</NavLink>

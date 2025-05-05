@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import About from "./pages/About";
+import Festivals from "./pages/Festivals";
 
 
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home darkMode={darkMode} />} />
+          <Route path="/festivals" element={<Festivals darkMode={darkMode}/>} />
           <Route path="/about" element={<About darkMode={darkMode}/>} />
           
         </Routes>

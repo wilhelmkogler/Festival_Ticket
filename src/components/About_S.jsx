@@ -75,13 +75,13 @@ function About({ darkMode, toggleDarkMode }) {
   
 
   return (
-    <div className="max-w-7xl mx-auto py-12 px-4">
+    <div className="max-w-7xl mx-auto py-6 lg:py-12 px-4">
       <h1 className={`${darkMode ? "text-white" : "text-black"
-    } text-4xl font-bold mb-8 text-center`}>About FestivalApp</h1>
+    } text-3xl lg:text-4xl font-bold mb-8 text-center`}>About FestivalApp</h1>
 
 
       <h2 className={`${darkMode ? "text-white" : "text-black"
-    } text-2xl font-semibold mt-20 mb-6 text-center`}>
+    } text-xl lg:text-3xl font-semibold mt-20 mb-6 text-center`}>
         Frequently Asked Questions
       </h2>
       <div className="space-y-8">
@@ -94,7 +94,7 @@ function About({ darkMode, toggleDarkMode }) {
   >
     <button
       onClick={() => toggleFAQ(index)}
-      className="w-full flex justify-between items-center px-4 py-4 text-left text-lg font-medium"
+      className="w-full flex justify-between items-center px-4 py-4 text-left text-md lg:text-2xl font-medium"
     >
       {faq.question}
       <span>{openIndexes.includes(index) ? "-" : "+"}</span>
@@ -107,11 +107,11 @@ function About({ darkMode, toggleDarkMode }) {
           initial={{ opacity: 0, scaleY: 0 }}
           animate={{ opacity: 1, scaleY: 1 }}
           exit={{ opacity: 0, scaleY: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
           style={{ transformOrigin: "top" }}
           className={`${
             darkMode ? "bg-transparent text-white" : "bg-white text-black"
-          } px-4 pt-0 pb-4 text-md origin-top`}
+          } px-4 pt-0 pb-4 text-md origin-top text-sm`}
         >
           {faq.answer}
         </motion.section>
