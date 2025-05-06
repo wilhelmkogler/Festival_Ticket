@@ -75,9 +75,9 @@ function About({ darkMode, toggleDarkMode }) {
   
 
   return (
-    <div className="max-w-7xl mx-auto py-6 lg:py-12 px-4">
+    <div className="max-w-7xl mx-auto py-6 lg:py-24 px-4">
       <h1 className={`${darkMode ? "text-white" : "text-black"
-    } text-3xl lg:text-4xl font-bold mb-8 text-center`}>About FestivalApp</h1>
+    } text-3xl lg:text-5xl font-bold mb-10 text-center`}>About FestivalApp</h1>
 
 
       <h2 className={`${darkMode ? "text-white" : "text-black"

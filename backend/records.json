@@ -1,113 +1,161 @@
 [
-    {
-      "name": "Sunbeat Festival",
-      "location": "Barcelona, Spain",
-      "dateStart": "2025-06-12",
-      "dateEnd": "2025-06-14",
-      "genre": ["EDM", "House"],
-      "priceRange": "€70–€150",
-      "ticketAvailable": 1200,
-      "image": "/img/festival1.jpg",
-      "description": "A beachside electronic music festival with international DJs."
-    },
-    {
-      "name": "Jazz Nights",
-      "location": "Montreux, Switzerland",
-      "dateStart": "2025-07-01",
-      "dateEnd": "2025-07-07",
-      "genre": ["Jazz", "Blues"],
-      "priceRange": "€80–€200",
-      "ticketAvailable": 900,
-      "image": "/img/festival1.jpg",
-      "description": "Experience legendary jazz performers in a lakeside setting."
-    },
-    {
-      "name": "Fusion Fest",
-      "location": "Berlin, Germany",
-      "dateStart": "2025-08-10",
-      "dateEnd": "2025-08-12",
-      "genre": ["Indie", "Rock"],
-      "priceRange": "€60–€130",
-      "ticketAvailable": 1500,
-      "image": "/img/festival1.jpg",
-      "description": "Alternative music and art fusion in the heart of Berlin."
-    },
-    {
-      "name": "Summer Vibes",
-      "location": "Lisbon, Portugal",
-      "dateStart": "2025-07-18",
-      "dateEnd": "2025-07-20",
-      "genre": ["Pop", "Dance"],
-      "priceRange": "€55–€120",
-      "ticketAvailable": 1000,
-      "image": "/img/festival1.jpg",
-      "description": "Feel the summer rhythm with top chart artists."
-    },
-    {
-      "name": "RockWave",
-      "location": "Athens, Greece",
-      "dateStart": "2025-06-21",
-      "dateEnd": "2025-06-23",
-      "genre": ["Rock", "Metal"],
-      "priceRange": "€65–€140",
-      "ticketAvailable": 750,
-      "image": "/img/festival1.jpg",
-      "description": "A powerful rock and metal gathering near ancient ruins."
-    },
-    {
-      "name": "ElectroFields",
-      "location": "Amsterdam, Netherlands",
-      "dateStart": "2025-09-05",
-      "dateEnd": "2025-09-07",
-      "genre": ["Techno", "Trance"],
-      "priceRange": "€90–€180",
-      "ticketAvailable": 1800,
-      "image": "/img/festival1.jpg",
-      "description": "Open-air techno festival in the green fields outside the city."
-    },
-    {
-      "name": "Urban Pulse",
-      "location": "Paris, France",
-      "dateStart": "2025-08-01",
-      "dateEnd": "2025-08-03",
-      "genre": ["Hip-Hop", "R&B"],
-      "priceRange": "€60–€160",
-      "ticketAvailable": 1100,
-      "image": "/img/festival1.jpg",
-      "description": "The heart of the city beats with urban rhythm and flow."
-    },
-    {
-      "name": "GreenFest",
-      "location": "Dublin, Ireland",
-      "dateStart": "2025-07-15",
-      "dateEnd": "2025-07-17",
-      "genre": ["Folk", "Indie"],
-      "priceRange": "€45–€100",
-      "ticketAvailable": 600,
-      "image": "/img/festival1.jpg",
-      "description": "Sustainable music festival promoting green living and great sounds."
-    },
-    {
-      "name": "Sunset Sound",
-      "location": "Nice, France",
-      "dateStart": "2025-06-28",
-      "dateEnd": "2025-06-30",
-      "genre": ["Chill", "Lounge"],
-      "priceRange": "€50–€110",
-      "ticketAvailable": 800,
-      "image": "/img/festival1.jpg",
-      "description": "Relaxed seaside music event with sunset views and chill vibes."
-    },
-    {
-      "name": "Firelight Festival",
-      "location": "Budapest, Hungary",
-      "dateStart": "2025-08-15",
-      "dateEnd": "2025-08-17",
-      "genre": ["Mixed"],
-      "priceRange": "€70–€160",
-      "ticketAvailable": 1300,
-      "image": "/img/festival1.jpg",
-      "description": "Multigenre night festival with lights, fire shows and music."
-    }
-  ]
-  
+  {
+    "name": "Sunbeat Festival",
+    "location": "Barcelona, Spain",
+    "dateStart": "2025-06-12",
+    "dateEnd": "2025-06-14",
+    "genre": [
+      "EDM",
+      "House"
+    ],
+    "ticketAvailable": 1200,
+    "image": "/img/festival1.jpg",
+    "description": "A beachside electronic music festival with international DJs.",
+    "basicPrice": 53,
+    "premiumPrice": 103,
+    "vipPrice": 212
+  },
+  {
+    "name": "Jazz Nights",
+    "location": "Montreux, Switzerland",
+    "dateStart": "2025-07-01",
+    "dateEnd": "2025-07-07",
+    "genre": [
+      "Jazz",
+      "Blues"
+    ],
+    "ticketAvailable": 900,
+    "image": "/img/festival1.jpg",
+    "description": "Experience legendary jazz performers in a lakeside setting.",
+    "basicPrice": 60,
+    "premiumPrice": 110,
+    "vipPrice": 240
+  },
+  {
+    "name": "Fusion Fest",
+    "location": "Berlin, Germany",
+    "dateStart": "2025-08-10",
+    "dateEnd": "2025-08-12",
+    "genre": [
+      "Indie",
+      "Rock"
+    ],
+    "ticketAvailable": 1500,
+    "image": "/img/festival1.jpg",
+    "description": "Alternative music and art fusion in the heart of Berlin.",
+    "basicPrice": 62,
+    "premiumPrice": 112,
+    "vipPrice": 248
+  },
+  {
+    "name": "Summer Vibes",
+    "location": "Lisbon, Portugal",
+    "dateStart": "2025-07-18",
+    "dateEnd": "2025-07-20",
+    "genre": [
+      "Pop",
+      "Dance"
+    ],
+    "ticketAvailable": 1000,
+    "image": "/img/festival1.jpg",
+    "description": "Feel the summer rhythm with top chart artists.",
+    "basicPrice": 63,
+    "premiumPrice": 113,
+    "vipPrice": 252
+  },
+  {
+    "name": "RockWave",
+    "location": "Athens, Greece",
+    "dateStart": "2025-06-21",
+    "dateEnd": "2025-06-23",
+    "genre": [
+      "Rock",
+      "Metal"
+    ],
+    "ticketAvailable": 750,
+    "image": "/img/festival1.jpg",
+    "description": "A powerful rock and metal gathering near ancient ruins.",
+    "basicPrice": 61,
+    "premiumPrice": 111,
+    "vipPrice": 244
+  },
+  {
+    "name": "ElectroFields",
+    "location": "Amsterdam, Netherlands",
+    "dateStart": "2025-09-05",
+    "dateEnd": "2025-09-07",
+    "genre": [
+      "Techno",
+      "Trance"
+    ],
+    "ticketAvailable": 1800,
+    "image": "/img/festival1.jpg",
+    "description": "Open-air techno festival in the green fields outside the city.",
+    "basicPrice": 62,
+    "premiumPrice": 112,
+    "vipPrice": 248
+  },
+  {
+    "name": "Urban Pulse",
+    "location": "Paris, France",
+    "dateStart": "2025-08-01",
+    "dateEnd": "2025-08-03",
+    "genre": [
+      "Hip-Hop",
+      "R&B"
+    ],
+    "ticketAvailable": 1100,
+    "image": "/img/festival1.jpg",
+    "description": "The heart of the city beats with urban rhythm and flow.",
+    "basicPrice": 50,
+    "premiumPrice": 100,
+    "vipPrice": 200
+  },
+  {
+    "name": "GreenFest",
+    "location": "Dublin, Ireland",
+    "dateStart": "2025-07-15",
+    "dateEnd": "2025-07-17",
+    "genre": [
+      "Folk",
+      "Indie"
+    ],
+    "ticketAvailable": 600,
+    "image": "/img/festival1.jpg",
+    "description": "Sustainable music festival promoting green living and great sounds.",
+    "basicPrice": 61,
+    "premiumPrice": 111,
+    "vipPrice": 244
+  },
+  {
+    "name": "Sunset Sound",
+    "location": "Nice, France",
+    "dateStart": "2025-06-28",
+    "dateEnd": "2025-06-30",
+    "genre": [
+      "Chill",
+      "Lounge"
+    ],
+    "ticketAvailable": 800,
+    "image": "/img/festival1.jpg",
+    "description": "Relaxed seaside music event with sunset views and chill vibes.",
+    "basicPrice": 61,
+    "premiumPrice": 111,
+    "vipPrice": 244
+  },
+  {
+    "name": "Firelight Festival",
+    "location": "Budapest, Hungary",
+    "dateStart": "2025-08-15",
+    "dateEnd": "2025-08-17",
+    "genre": [
+      "Mixed"
+    ],
+    "ticketAvailable": 1300,
+    "image": "/img/festival1.jpg",
+    "description": "Multigenre night festival with lights, fire shows and music.",
+    "basicPrice": 63,
+    "premiumPrice": 113,
+    "vipPrice": 252
+  }
+]
