@@ -1,10 +1,10 @@
-import About_S from "../components/About_S.jsx";
+import FAQ from "../components/FAQ.jsx";
 
 
 function About({ darkMode }) {
   return (
     <>
-      <About_S darkMode={darkMode}/>
+      <FAQ darkMode={darkMode}/>
       
     </>
   );

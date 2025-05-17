@@ -13,6 +13,19 @@ app.use(express.json());
 const festivalRoutes = require("./routes/festivals");
 app.use("/api/festivals", festivalRoutes);
 
+const Festival = require("./models/Festival");
+
+app.get("/api/festival/:id", async (req, res) => {
+  try {
+    const festival = await Festival.findById(req.params.id);
+    if (!festival) return res.status(404).json({ error: "Festival not found" });
+    res.json(festival);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
 // MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)
