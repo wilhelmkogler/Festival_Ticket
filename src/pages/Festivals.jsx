@@ -343,13 +343,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                       </p>
                     </div>
     
-                    <p className="text-sm lg:text-lg text-justify my-6">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Suscipit aspernatur cumque nam blanditiis nisi illum officiis
-                      rem iste, doloremque quae ducimus consectetur aperiam iure
-                      distinctio optio at quisquam nesciunt sint. Lorem ipsum dolor
-                      sit amet consectetur, adipisicing elit.
-                    </p>
+                    
     
                     <div className="my-6 text-md lg:text-2xl font-semibold flex justify-around">
                       <p>Tickets: {festival.ticketAvailable}</p>
