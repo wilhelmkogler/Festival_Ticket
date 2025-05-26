@@ -6,10 +6,12 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Festivals from "./pages/Festivals";
 import FestivalPage from "./pages/FestivalPage";
+import Checkout from "./pages/Checkout";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [selectedFestival, setSelectedFestival] = useState(null);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const savedMode = localStorage.getItem("darkMode");
@@ -62,8 +64,16 @@ export default function App() {
                 <FestivalPage
                   selectedFestival={selectedFestival}
                   darkMode={darkMode}
+                  cart={cart}
+                  setCart={setCart}
                 />
               }
+            />
+            <Route
+              path="/checkout"
+              
+              element={<Checkout cart={cart}
+              setCart={setCart} darkMode={darkMode} />}
             />
           </Routes>
         </main>
