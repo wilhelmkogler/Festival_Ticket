@@ -13,6 +13,10 @@ app.use(express.json());
 const festivalRoutes = require("./routes/festivals");
 app.use("/api/festivals", festivalRoutes);
 
+const orderRoutes = require("./routes/orders");
+app.use("/api/orders", orderRoutes);
+
+
 const Festival = require("./models/Festival");
 
 app.get("/api/festival/:id", async (req, res) => {
@@ -36,3 +40,8 @@ mongoose
     );
   })
   .catch((err) => console.error(err));
+
+
+//Stripe
+const stripeRoutes = require("./routes/stripe");
+app.use("/api/stripe", stripeRoutes);
