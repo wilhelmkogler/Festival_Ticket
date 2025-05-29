@@ -13,32 +13,36 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
     }
   }, [selectedFestival]);
 
-  const addToCart = (type, price) => {
-    if (!festival) return;
-    const ticketKey = `${festival.name}_${type}_${festival.dateStart}`;
+ const addToCart = (type, price) => {
+  if (!festival) return;
+  const ticketKey = `${festival.name}_${type}_${festival.dateStart}`;
 
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.key === ticketKey);
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.key === ticketKey ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        return [
-          ...prevCart,
-          {
-            key: ticketKey,
-            name: festival.name,
-            date: festival.dateStart,
-            type,
-            price,
-            quantity: 1,
-          },
-        ];
-      }
-    });
-    setCartOpen(true);
-  };
+  setCart((prevCart) => {
+    const existingItem = prevCart.find((item) => item.key === ticketKey);
+    if (existingItem) {
+      return prevCart.map((item) =>
+        item.key === ticketKey ? { ...item, quantity: item.quantity + 1 } : item
+      );
+    } else {
+      return [
+        ...prevCart,
+        {
+          key: ticketKey,
+          name: festival.name,
+          dateStart: festival.dateStart,
+          dateEnd: festival.dateEnd,
+          location: festival.location,
+          type,
+          price,
+          quantity: 1,
+        },
+      ];
+    }
+  });
+
+  setCartOpen(true);
+};
+
 
   const removeFromCart = (indexToRemove) => {
     setCart((prev) => prev.filter((_, idx) => idx !== indexToRemove));
@@ -174,9 +178,7 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
                           <p>
                             {item.type} Ticket – {item.price} € x {item.quantity}
                           </p>
-                          <p className="text-xs">
-                            {new Date(item.date).toLocaleDateString()}
-                          </p>
+                          
                         </div>
                         <button
                           onClick={() => removeFromCart(index)}

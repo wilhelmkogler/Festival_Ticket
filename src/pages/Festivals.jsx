@@ -332,13 +332,13 @@ function Festivals({ darkMode, setSelectedFestival }) {
                     <div className="mt-1 flex justify-between items-center text-md lg:text-xl font-semibold text-gray-400">
                       <p>{festival.location}</p>
                       <p>
-                        {new Date(festival.dateStart).toLocaleDateString("en-US", {
-                          month: "long",
+                        {new Date(festival.dateStart).toLocaleDateString("en-gb", {
                           day: "numeric",
                         })}
                         {" - "}
-                        {new Date(festival.dateEnd).toLocaleDateString("en-US", {
+                        {new Date(festival.dateEnd).toLocaleDateString("en-gb", {
                           day: "numeric",
+                          month: "long",
                         })}
                       </p>
                     </div>
@@ -352,7 +352,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
     
                     <p className="font-bold text-md lg:text-2xl text-center">
                       Starts:{" "}
-                      {new Date(festival.dateStart).toLocaleDateString("en-US", {
+                      {new Date(festival.dateStart).toLocaleDateString("en-gb", {
                         month: "long",
                         day: "numeric",
                       })}

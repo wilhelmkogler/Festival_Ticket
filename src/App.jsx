@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Festivals from "./pages/Festivals";
 import FestivalPage from "./pages/FestivalPage";
 import Checkout from "./pages/Checkout";
+import Summary from "./pages/Summary";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -74,6 +75,11 @@ export default function App() {
               
               element={<Checkout cart={cart}
               setCart={setCart} darkMode={darkMode} />}
+            />
+            <Route
+              path="/summary"
+              
+              element={<Summary darkMode={darkMode} />}
             />
           </Routes>
         </main>
