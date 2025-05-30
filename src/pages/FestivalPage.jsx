@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ShoppingCart, X } from "lucide-react";
+import { ShoppingCart, X, CalendarDays, Ticket, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
@@ -13,36 +13,37 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
     }
   }, [selectedFestival]);
 
- const addToCart = (type, price) => {
-  if (!festival) return;
-  const ticketKey = `${festival.name}_${type}_${festival.dateStart}`;
+  const addToCart = (type, price) => {
+    if (!festival) return;
+    const ticketKey = `${festival.name}_${type}_${festival.dateStart}`;
 
-  setCart((prevCart) => {
-    const existingItem = prevCart.find((item) => item.key === ticketKey);
-    if (existingItem) {
-      return prevCart.map((item) =>
-        item.key === ticketKey ? { ...item, quantity: item.quantity + 1 } : item
-      );
-    } else {
-      return [
-        ...prevCart,
-        {
-          key: ticketKey,
-          name: festival.name,
-          dateStart: festival.dateStart,
-          dateEnd: festival.dateEnd,
-          location: festival.location,
-          type,
-          price,
-          quantity: 1,
-        },
-      ];
-    }
-  });
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.key === ticketKey);
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.key === ticketKey
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [
+          ...prevCart,
+          {
+            key: ticketKey,
+            name: festival.name,
+            dateStart: festival.dateStart,
+            dateEnd: festival.dateEnd,
+            location: festival.location,
+            type,
+            price,
+            quantity: 1,
+          },
+        ];
+      }
+    });
 
-  setCartOpen(true);
-};
-
+    setCartOpen(true);
+  };
 
   const removeFromCart = (indexToRemove) => {
     setCart((prev) => prev.filter((_, idx) => idx !== indexToRemove));
@@ -53,101 +54,209 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
   };
 
   const handleCheckout = () => {
-  setCartOpen(false);
-  navigate("/checkout");
-};
-
+    setCartOpen(false);
+    navigate("/checkout");
+  };
 
   if (!festival)
     return (
-      <p className="mt-16 text-4xl text-green-600 text-center">
+      <p className="mt-16 text-5xl text-red-600 text-center">
         No festival selected
       </p>
     );
 
   return (
     <div
-      className={`relative max-w-7xl mx-auto py-6 lg:py-24 px-4 ${
-        darkMode ? "text-white" : "text-black"
+      className={`relative max-w-7xl mx-4 lg:mx-auto rounded-3xl my-12 lg:my-24 p-4 ${
+        darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
       }`}
     >
-      <h1 className="text-5xl font-bold mb-6">{festival.name}</h1>
-
       <img
         src={festival.image}
         alt={festival.name}
-        className="w-full h-96 object-cover rounded-lg mb-6"
+        className="w-full h-50 lg:h-96 object-cover rounded-lg mb-6"
       />
 
-      <h2 className="text-3xl font-bold mb-6 text-right">Get your ticket now</h2>
-
-      <p>{festival.description}</p>
-      <p>Genres: {festival.genre.join(", ")}</p>
-
-      <div className="mt-4 font-semibold text-xl space-y-2">
-        <p>Location: {festival.location}</p>
-        <p>
-          Starting: {new Date(festival.dateStart).toLocaleDateString("en-us", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          })}
+      <div className="mb-10">
+        <h1 className="text-4xl lg:text-6xl text-center font-bold mb-10">
+          {festival.name}
+        </h1>
+        <p className="text-xl lg:text-2xl text-center">
+          {festival.description}
         </p>
-        <p>
-          Last day: {new Date(festival.dateEnd).toLocaleDateString("en-us", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          })}
+        <p className="mt-4 text-md lg:text-xl text-center">
+          {festival.genre.join(" | ")}
         </p>
-        <p>Tickets Available: {festival.ticketAvailable}</p>
-
-        <table className="text-3xl w-full mt-6">
-          <tbody>
-            <tr>
-              <td>Basic Ticket</td>
-              <td>{festival.basicPrice} €</td>
-              <td>
-                <button
-                  onClick={() => addToCart("Basic", festival.basicPrice)}
-                  className="bg-green-500 py-4 px-8 rounded-full hover:bg-green-700"
-                >
-                  Buy now
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Premium Ticket</td>
-              <td>{festival.premiumPrice} €</td>
-              <td>
-                <button
-                  onClick={() => addToCart("Premium", festival.premiumPrice)}
-                  className="bg-green-500 py-4 px-8 rounded-full hover:bg-green-700"
-                >
-                  Buy now
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>VIP Ticket</td>
-              <td>{festival.vipPrice} €</td>
-              <td>
-                <button
-                  onClick={() => addToCart("VIP", festival.vipPrice)}
-                  className="bg-green-500 py-4 px-8 rounded-full hover:bg-green-700"
-                >
-                  Buy now
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
 
-      <div className="fixed bottom-6 right-6 z-50">
+      {/*desktop view*/}
+      <div className="hidden mt-16 lg:flex justify-evenly gap-6">
+        <div className="flex flex-col justify-between items-center gap-4">
+          <div className="text-2xl flex items-center gap-4">
+            <MapPin size={32} />
+            <p>{festival.location}</p>
+          </div>
+
+          <div className="bg-yellow-800 rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
+            <p className="text-2xl font-serif">STANDARD</p>
+
+            <p className="text-5xl font-bold">{festival.basicPrice} €</p>
+            <button
+              onClick={() => addToCart("Basic", festival.basicPrice)}
+              className="bg-green-500 mt-4 py-2 px-8 rounded-full hover:bg-green-700"
+            >
+              Buy Ticket
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-between items-center gap-4">
+          <div className="text-2xl flex items-center gap-4">
+            <CalendarDays size={32} />
+            {new Date(festival.dateStart).toLocaleDateString("en-gb", {
+              day: "numeric",
+            })}{" "}
+            {" - "}
+            {new Date(festival.dateEnd).toLocaleDateString("en-gb", {
+              month: "long",
+              day: "numeric",
+            })}
+            {", "}
+            {new Date(festival.dateEnd).toLocaleDateString("en-gb", {
+              year: "numeric",
+            })}
+          </div>
+
+          <div className="bg-yellow-800 rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
+            <p className="text-2xl font-serif">PREMIUM</p>
+
+            <p className="text-5xl font-bold">{festival.premiumPrice} €</p>
+            <button
+              onClick={() => addToCart("Premium", festival.premiumPrice)}
+              className="bg-green-500 mt-4 py-2 px-8 rounded-full hover:bg-green-700"
+            >
+              Buy Ticket
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-between items-center gap-16">
+          <div className="text-2xl flex items-center gap-4">
+            <Ticket size={32} />
+
+            <p> Tickets: {festival.ticketAvailable}</p>
+          </div>
+
+          <div className="bg-yellow-800 rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
+            <p className="text-2xl font-serif">VIP</p>
+
+            <p className="text-5xl font-bold">{festival.vipPrice} €</p>
+            <button
+              onClick={() => addToCart("VIP", festival.vipPrice)}
+              className="bg-green-500 mt-4 py-2 px-8 rounded-full hover:bg-green-700"
+            >
+              Buy Ticket
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/*mobile view */}
+      <div className="lg:hidden text-2xl flex flex-col gap-10 p-8 mb-8">
+        <div>
+          <div className="flex items-center gap-4">
+            <MapPin size={32} />
+            <p>{festival.location}</p>
+          </div>
+        </div>
+        <div>
+          <div className="flex items-center gap-4">
+            <CalendarDays size={32} />
+            {new Date(festival.dateStart).toLocaleDateString("en-gb", {
+              day: "numeric",
+            })}{" "}
+            {" - "}
+            {new Date(festival.dateEnd).toLocaleDateString("en-gb", {
+              month: "long",
+              day: "numeric",
+            })}
+            {", "}
+            {new Date(festival.dateEnd).toLocaleDateString("en-gb", {
+              year: "numeric",
+            })}
+          </div>
+        </div>
+
+        <div>
+          <div className="flex items-center gap-4">
+            <Ticket size={32} />
+
+            <p> Tickets: {festival.ticketAvailable}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="px-8 lg:hidden flex flex-col gap-6">
+        <div className="bg-yellow-800 rounded-3xl py-4 px-2 text-lg flex justify-around items-center">
+          <div className="flex flex-col text-center">
+            <p className="text-lg font-serif">STANDARD</p>
+
+            <p className="text-2xl font-bold">{festival.basicPrice} €</p>
+          </div>
+
+          <button
+            onClick={() => addToCart("Basic", festival.basicPrice)}
+            className="bg-green-500 py-2 px-8 rounded-full hover:bg-green-700"
+          >
+            Buy Ticket
+          </button>
+        </div>
+
+        <div className="bg-yellow-800 rounded-3xl py-4 px-2 text-lg flex justify-around items-center">
+          <div className="flex flex-col text-center">
+            <p className="text-lg font-serif">PREMIUM</p>
+
+            <p className="text-2xl font-bold">{festival.premiumPrice} €</p>
+          </div>
+
+          <button
+            onClick={() => addToCart("Premium", festival.premiumPrice)}
+            className="bg-green-500 py-2 px-8 rounded-full hover:bg-green-700"
+          >
+            Buy Ticket
+          </button>
+        </div>
+
+        <div className="bg-yellow-800 rounded-3xl py-4 px-2 text-lg flex justify-around items-center">
+          <div className="flex flex-col text-center">
+            <p className="text-lg font-serif">VIP</p>
+
+            <p className="text-2xl font-bold">{festival.vipPrice} €</p>
+          </div>
+
+          <button
+            onClick={() => addToCart("VIP", festival.vipPrice)}
+            className="bg-green-500 py-2 px-8 rounded-full hover:bg-green-700"
+          >
+            Buy Ticket
+          </button>
+        </div>
+      </div>
+
+      <div className="text-center lg:text-left text-sm lg:text-lg px-0 lg:px-10 pt-6">
+        <p>
+          Learn more about tickets <span className="text-blue-500">here</span>.
+        </p>
+      </div>
+
+      <div className="fixed bottom-1 lg:bottom-6 right-1 lg:right-6 z-50">
         <button
           onClick={() => setCartOpen((prev) => !prev)}
-          className="bg-black text-white p-4 rounded-full shadow-lg hover:scale-110 transition"
+          className={`p-2 lg:p-4 rounded-full shadow-lg border-2 hover:scale-110 transition ${
+            darkMode
+              ? "bg-transparent border-white text-white"
+              : "bg-white text-black"
+          }`}
         >
           <ShoppingCart size={28} />
         </button>
@@ -176,9 +285,9 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
                         <div>
                           <p className="font-semibold">{item.name}</p>
                           <p>
-                            {item.type} Ticket – {item.price} € x {item.quantity}
+                            {item.type} Ticket – {item.price} € x{" "}
+                            {item.quantity}
                           </p>
-                          
                         </div>
                         <button
                           onClick={() => removeFromCart(index)}

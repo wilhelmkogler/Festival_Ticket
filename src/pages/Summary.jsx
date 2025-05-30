@@ -3,10 +3,6 @@ import { useEffect, useState } from "react";
 const Summary = ({ darkMode }) => {
   const [order, setOrder] = useState(null);
   const [error, setError] = useState("");
-  const subtotal = order.items.reduce(
-  (acc, item) => acc + item.price * item.quantity,
-  0
-);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/orders/latest")
@@ -23,6 +19,11 @@ const Summary = ({ darkMode }) => {
 
   if (error) return <p>{error}</p>;
   if (!order) return <p>Betöltés...</p>;
+
+  const subtotal = order.items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <div
