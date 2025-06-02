@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         vilagos: "#db2d2a",
-        sotet: "#0bb244",
+        sotet: "#2a2d33",
       },
       fontFamily: {
         fancy: ['"Fascinate Inline"', 'cursive'],

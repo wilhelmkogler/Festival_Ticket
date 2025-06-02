@@ -45,52 +45,41 @@ function CheckoutForm({ cart, setCart, darkMode }) {
     e.preventDefault();
     if (!stripe || !elements || !clientSecret) return;
 
-  setLoading(true);
-  setError("");
+    setLoading(true);
+    setError("");
 
-  
-
-
-  try {
-    
-
-
+    try {
       // 2. Fizetés végrehajtása
-     const result = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-        billing_details: {
-          name: customerName,
-          email: customerEmail,
-          phone: customerPhone,
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: customerName,
+            email: customerEmail,
+            phone: customerPhone,
+          },
         },
-      },
-    });
+      });
 
-    
-
-    if (result.error) {
-      setError(result.error.message);
-      setLoading(false);
-      return;
-    }
-
-    
+      if (result.error) {
+        setError(result.error.message);
+        setLoading(false);
+        return;
+      }
 
       // 3. Rendelés mentése az adatbázisba
       const orderRes = await fetch("http://localhost:5000/api/orders/create", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: customerName,
-        email: customerEmail,
-        phone: customerPhone,
-        items: cart, // fontos! ne legyen stringify-olva!
-      }),
-    });
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: customerName,
+          email: customerEmail,
+          phone: customerPhone,
+          items: cart, // fontos! ne legyen stringify-olva!
+        }),
+      });
 
-    if (!orderRes.ok) throw new Error("Order saving failed");
-
+      if (!orderRes.ok) throw new Error("Order saving failed");
 
       // 4. Sikeres fizetés
       setCart([]);
@@ -105,7 +94,7 @@ function CheckoutForm({ cart, setCart, darkMode }) {
 
   return (
     <div
-      className={`max-w-7xl mx-auto py-6 lg:py-24 px-4 ${
+      className={`max-w-7xl mx-auto py-6 lg:mt-40 px-4 ${
         darkMode ? "text-white" : "text-black"
       }`}
     >
@@ -116,7 +105,7 @@ function CheckoutForm({ cart, setCart, darkMode }) {
       <div
         id="checkoutform"
         className={`flex flex-col-reverse lg:flex-row justify-between gap-10 rounded-3xl p-6 ${
-          darkMode ? "bg-slate-800 text-white" : "bg-white text-black"
+          darkMode ? "bg-sotet text-white" : "bg-white text-black"
         }`}
       >
         <div className="w-full lg:w-2/3">

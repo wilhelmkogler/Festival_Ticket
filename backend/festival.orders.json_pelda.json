@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "6838c3d82ecb8c516d258a80"
+  },
+  "name": "Wilhelm Kogler",
+  "email": "contact@kwjr.com",
+  "phone": "+691519198",
+  "items": [
+    {
+      "key": "Sunset Sound_VIP_2027-06-28T00:00:00.000Z",
+      "name": "Sunset Sound",
+      "dateStart": "2027-06-28T00:00:00.000Z",
+      "dateEnd": "2027-06-30T00:00:00.000Z",
+      "location": "Nice, France",
+      "type": "VIP",
+      "price": 244,
+      "quantity": 1
+    },
+    {
+      "key": "RockWave_Premium_2026-06-21T00:00:00.000Z",
+      "name": "RockWave",
+      "dateStart": "2026-06-21T00:00:00.000Z",
+      "dateEnd": "2026-06-23T00:00:00.000Z",
+      "location": "Athens, Greece",
+      "type": "Premium",
+      "price": 111,
+      "quantity": 1
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-05-29T20:30:16.966Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-29T20:30:16.966Z"
+  },
+  "__v": 0
+}]

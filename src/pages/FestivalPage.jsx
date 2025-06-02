@@ -67,8 +67,8 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
 
   return (
     <div
-      className={`relative max-w-7xl mx-4 lg:mx-auto rounded-3xl my-12 lg:my-24 p-4 ${
-        darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+      className={`relative max-w-7xl mx-4 lg:mx-auto rounded-3xl my-12 lg:mt-40 p-4 ${
+        darkMode ? "bg-sotet text-white" : "bg-white text-black"
       }`}
     >
       <img

@@ -4,7 +4,7 @@ import { Sun, Moon, AlignLeft, X, User } from "lucide-react";
 
 const navLinkClass = ({ isActive }) =>
   `px-4 py-2 rounded-full text-md transition font-semibold ${
-    isActive ? "bg-black text-white" : "text-black hover:text-vilagos"
+    isActive ? "bg-sotet text-white" : ""
   }`;
 
 function Header({ darkMode, toggleDarkMode }) {
@@ -13,23 +13,31 @@ function Header({ darkMode, toggleDarkMode }) {
   return (
     <>
       {/* ✅ Asztali navigáció */}
-      <div className="hidden lg:flex justify-center">
-        <div className="bg-white rounded-full px-4 py-1 mt-4 flex items-center gap-4 shadow-md">
+      <div className="hidden lg:flex absolute top-0 left-1/2 transform -translate-x-1/2 z-50">
+        <div
+          className={`${
+            darkMode ? "bg-sotet text-white" : "bg-white text-black"
+          } rounded-full px-4 py-2 mt-4 flex items-center gap-4 shadow-md  justify-between`}
+        >
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `py-2 px-4 rounded-full text-black font-semibold text-md ${
-                isActive ? "bg-black text-white" : "hover:text-vilagos"
+              `flex items-center justify-center w-12 h-12 rounded-full ${
+                isActive ? "bg-sotet text-white" : "hover:text-vilagos"
               }`
             }
           >
-            LOGO
+            <img
+              className="w-30 h-30 rounded-full object-contain"
+              src="img/logo2.png"
+              alt="Logo"
+            />
           </NavLink>
 
           <NavLink to="/festivals" className={navLinkClass}>
-            Festivals
+            Browse
           </NavLink>
-          <NavLink to="/menu" className={navLinkClass}>
+          <NavLink to="/prices" className={navLinkClass}>
             Prices
           </NavLink>
           <NavLink to="/about" className={navLinkClass}>
@@ -38,13 +46,13 @@ function Header({ darkMode, toggleDarkMode }) {
           <NavLink to="/contact" className={navLinkClass}>
             Contact
           </NavLink>
-          <NavLink to="/delivery" className={navLinkClass}>
+          <NavLink to="/account" className={navLinkClass}>
             Account
           </NavLink>
 
           <button
             onClick={toggleDarkMode}
-            className="px-2 py-4 rounded-full text-black transition hover:text-vilagos"
+            className="px-2 py-2 rounded-full transition hover:text-vilagos"
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -66,7 +74,11 @@ function Header({ darkMode, toggleDarkMode }) {
             darkMode ? "text-white" : "text-black"
           } text-xl font-bold`}
         >
-          LOGO
+          <img
+              className="w-100 h-10 rounded-full object-contain"
+              src="img/logo2.png"
+              alt="Logo"
+            />
         </NavLink>
 
         <button onClick={() => setMenuOpen(true)}>
@@ -111,7 +123,7 @@ function Header({ darkMode, toggleDarkMode }) {
             } px-4 py-2 rounded-full text-lg transition font-semibold`}
             onClick={() => setMenuOpen(false)}
           >
-            Festivals
+            Browse
           </NavLink>
           <NavLink
             to="/menu"
