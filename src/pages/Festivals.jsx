@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function Festivals({ darkMode, setSelectedFestival }) {
   const [festivals, setFestivals] = useState([]);
+  const [visible, setVisible] = useState(false);
   const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortOption, setSortOption] = useState("upcoming");
@@ -54,7 +55,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/festivals")
+    fetch("http://192.168.1.7:5000/api/festivals")
       .then((res) => res.json())
       .then((data) => {
         const sorted = sortFestivals(data, "upcoming");
@@ -131,24 +132,44 @@ function Festivals({ darkMode, setSelectedFestival }) {
 
   return (
     <div
-      className={`max-w-7xl mx-auto py-6 lg:mt-40 px-4 ${
+      className={`max-w-7xl mx-4 lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
         darkMode ? "text-white" : "text-black"
       }`}
     >
-      <h1
-        className={`${
-          darkMode ? "text-white" : "text-black"
-        } text-3xl lg:text-5xl font-bold mb-10 text-center`}
-      >
+      <h1 className="text-3xl lg:text-5xl font-bold mb-10 lg:mb-16 text-center">
         Upcoming Festivals
       </h1>
 
       {loading ? (
         <p className="text-center">Loading...</p>
       ) : (
-        <div className="flex flex-col lg:flex-row gap-10">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-10">
           {/* Filter sidebar */}
-          <div className="lg:w-1/3 space-y-6">
+
+          <div className="flex flex-col gap-6">
+            <button
+              className={`block lg:hidden p-2 text-xl rounded-xl ${
+                darkMode ? "bg-purple-900 text-white" : "bg-purple-500 text-white"
+              }`}
+              type="button"
+              onClick={() => setVisible(!visible)}
+            >
+              {visible ? "Hide Filters" : "Show Filters"}
+            </button>
+
+            <p className="block lg:hidden text-lg text-center font-medium mb-4">
+              Showing {filtered.length}{" "}
+              {filtered.length > 1 ? " festivals" : " festival"}
+            </p>
+          </div>
+
+          <div
+            className={`
+    overflow-hidden lg:w-1/3 space-y-6 transition-all duration-500 ease-in-out
+    ${visible ? "max-h-100 opacity-100" : "max-h-0 opacity-0"}
+    lg:max-h-full lg:opacity-100 lg:block
+  `}
+          >
             <div>
               <select
                 className="bg-white text-black w-full border px-3 py-2 rounded-full"
@@ -156,14 +177,14 @@ function Festivals({ darkMode, setSelectedFestival }) {
                 onChange={(e) => setSortOption(e.target.value)}
               >
                 <option value="upcoming">
-                  Sorted by Start Date (Soonest First)
+                  Sort by Start Date (Soonest First)
                 </option>
                 <option value="latest">
-                  Sorted by Start Date (Latest First)
+                  Sort by Start Date (Latest First)
                 </option>
-                <option value="priceLow">Sorted by Price (Lowest First)</option>
+                <option value="priceLow">Sort by Price (Lowest First)</option>
                 <option value="priceHigh">
-                  Sorted by Price (Highest First)
+                  Sort by Price (Highest First)
                 </option>
               </select>
             </div>
@@ -183,7 +204,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
               </button>
             </div>
 
-            <p className="text-lg text-center font-medium mb-4">
+            <p className="hidden lg:block text-lg text-center font-medium mb-4">
               Showing {filtered.length} festivals
             </p>
             <div className="flex justify-between flex-row-reverse gap-4">
@@ -288,7 +309,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                   placeholder="Min"
                   className={`${
                     darkMode ? "bg-transparent text-white" : "text-black"
-                  } border-2 font-bold text-lg rounded w-1/2 px-2 py-1`}
+                  } border-2 text-center font-bold text-lg rounded w-1/2 px-2 py-1`}
                   onChange={handlePriceChange}
                 />
                 <input
@@ -297,7 +318,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                   placeholder="Max"
                   className={`${
                     darkMode ? "bg-transparent text-white" : "text-black"
-                  } border-2 font-bold text-lg rounded w-1/2 px-2 py-1`}
+                  } border-2 text-center font-bold text-lg rounded w-1/2 px-2 py-1`}
                   onChange={handlePriceChange}
                 />
               </div>
@@ -309,7 +330,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
             {filtered.map((festival) => (
               <div
                 key={festival._id}
-                className={` rounded-xl shadow-md p-6 transition transform ${
+                className={` rounded-xl shadow-md p-4 lg:p-6 transition transform ${
                   darkMode ? "bg-sotet" : "bg-gray-100"
                 }`}
               >
@@ -318,7 +339,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                   alt={festival.name}
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 />
-                <div className="flex justify-between items-center text-xl lg:text-3xl font-bold">
+                <div className="flex justify-between items-center text-lg lg:text-3xl font-bold">
                   <p>{festival.name}</p>
                   <p>
                     {" "}
@@ -327,7 +348,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                     })}
                   </p>
                 </div>
-                <div className="mt-1 flex justify-between items-center text-md lg:text-xl font-semibold text-gray-400">
+                <div className="mt-1 flex justify-between items-center text-sm lg:text-xl font-semibold text-gray-400">
                   <p>{festival.location}</p>
                   <p>
                     {new Date(festival.dateStart).toLocaleDateString("en-gb", {
@@ -341,7 +362,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                   </p>
                 </div>
 
-                <div className="my-6 text-md lg:text-2xl font-semibold flex justify-around">
+                <div className="my-10 text-md lg:text-2xl font-semibold flex justify-around">
                   <p>Tickets: {festival.ticketAvailable}</p>
                   <p>Price: {festival.basicPrice} €</p>
                 </div>
@@ -358,7 +379,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                     setSelectedFestival(festival);
                     navigate("/festival_details");
                   }}
-                  className="w-full bg-green-500 text-white text-2xl lg:text-3xl py-2 lg:py-4 mt-4 rounded-full transition-all duration-150 hover:bg-green-600"
+                  className="w-full bg-green-500 text-white text-xl lg:text-3xl py-2 lg:py-4 mt-4 rounded-full transition-all duration-150 hover:bg-green-600"
                 >
                   Select
                 </button>

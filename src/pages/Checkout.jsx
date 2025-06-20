@@ -109,8 +109,8 @@ function CheckoutForm({ cart, setCart, darkMode }) {
         }`}
       >
         <div className="w-full lg:w-2/3">
-          <h2 className="text-xl lg:text-3xl text-center lg:text-left font-semibold mb-8 lg:mb-4">
-            Your Details
+          <h2 className="text-xl lg:text-3xl text-center lg:text-left font-semibold mb-8">
+            DETAILS
           </h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex flex-col lg:flex-row gap-6">
@@ -197,8 +197,8 @@ function CheckoutForm({ cart, setCart, darkMode }) {
         </div>
 
         <div className="w-full lg:w-1/4">
-          <h2 className="text-xl lg:text-3xl text-center lg:text-left font-semibold mb-8 lg:mb-4">
-            Your Tickets
+          <h2 className="text-xl lg:text-3xl text-center lg:text-left font-semibold mb-8">
+            TICKETS
           </h2>
           {cart.length === 0 ? (
             <p>No items in cart.</p>

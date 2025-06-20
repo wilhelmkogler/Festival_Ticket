@@ -7,10 +7,12 @@ function Footer({ darkMode, toggleDarkMode }) {
     <div className={`${darkMode ? "text-white" : "text-black"} py-10 max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 lg:gap-8`}>
       {/* Logo + leírás */}
       <div className="w-full lg:w-1/3 flex flex-col justify-center items-center gap-4">
-        <div className="text-2xl font-bold">LOGO</div>
-        <p className="text-sm text-justify">
-          Motto
-        </p>
+        <img
+              className="w-20 h-20 rounded-full object-contain"
+              src="img/logo2.png"
+              alt="Logo"
+            />
+        
 
         
       </div>
@@ -18,10 +20,10 @@ function Footer({ darkMode, toggleDarkMode }) {
       {/* Navigációs linkek */}
       <div className="w-full lg:w-1/3 flex flex-col lg:flex-row items-center justify-center gap-6 text-md font-bold">
         
-        <NavLink to="/festival" className={`${darkMode ? "hover:text-black" : "hover:text-white"} transition-all duration-100`}>Browse</NavLink>
-        <NavLink to="/menu" className={`${darkMode ? "hover:text-black" : "hover:text-white"} transition-all duration-100`}>Prices</NavLink>
+        <NavLink to="/festivals" className={`${darkMode ? "hover:text-black" : "hover:text-white"} transition-all duration-100`}>Browse</NavLink>
+        <NavLink to="/prices" className={`${darkMode ? "hover:text-black" : "hover:text-white"} transition-all duration-100`}>Prices</NavLink>
+        <NavLink to="/cities" className={`${darkMode ? "hover:text-black" : "hover:text-white"} transition-all duration-100`}>Locations</NavLink>
         <NavLink to="/about" className={`${darkMode ? "hover:text-black" : "hover:text-white"} transition-all duration-100`}>About</NavLink>
-        <NavLink to="/contact" className={`${darkMode ? "hover:text-black" : "hover:text-white"} transition-all duration-100`}>Contact</NavLink>
         <NavLink to="/delivery" className={`${darkMode ? "hover:text-black" : "hover:text-white"} transition-all duration-100`}>Account</NavLink>
       </div>
 
@@ -43,7 +45,7 @@ function Footer({ darkMode, toggleDarkMode }) {
     </div>
     {/* Alsó rész – jogi szöveg */}
     <div className={`${darkMode ? "text-white" : "text-black"} py-4 text-sm text-center`}>
-      © {new Date().getFullYear()} FestivalApp. All rights reserved.
+      © {new Date().getFullYear()} Festival. All rights reserved.
     </div>
   </footer>
   );

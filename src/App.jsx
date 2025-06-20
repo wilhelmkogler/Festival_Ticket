@@ -8,6 +8,8 @@ import Festivals from "./pages/Festivals";
 import FestivalPage from "./pages/FestivalPage";
 import Checkout from "./pages/Checkout";
 import Summary from "./pages/Summary";
+import Prices from "./pages/Prices";
+import Cities from "./pages/Cities";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -49,6 +51,8 @@ export default function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home darkMode={darkMode} />} />
+            <Route path="/prices" element={<Prices darkMode={darkMode} />} />
+            <Route path="/cities" element={<Cities darkMode={darkMode} />} />
             <Route path="/about" element={<About darkMode={darkMode} />} />
             <Route
               path="/festivals"

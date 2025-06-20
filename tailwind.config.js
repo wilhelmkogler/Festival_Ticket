@@ -9,6 +9,9 @@ export default {
       colors: {
         vilagos: "#db2d2a",
         sotet: "#2a2d33",
+        standard: "#7ca9f2",
+        premium: "#bf77f2",
+        vip: "#e6b120",
       },
       fontFamily: {
         fancy: ['"Fascinate Inline"', 'cursive'],

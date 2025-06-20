@@ -60,14 +60,14 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
 
   if (!festival)
     return (
-      <p className="mt-16 text-5xl text-red-600 text-center">
+      <p className="mt-44 text-5xl text-red-600 text-center">
         No festival selected
       </p>
     );
 
   return (
     <div
-      className={`relative max-w-7xl mx-4 lg:mx-auto rounded-3xl my-12 lg:mt-40 p-4 ${
+      className={`relative max-w-7xl mx-8 lg:mx-auto rounded-3xl my-12 mt-16 lg:mt-56 p-4 ${
         darkMode ? "bg-sotet text-white" : "bg-white text-black"
       }`}
     >
@@ -77,7 +77,7 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
         className="w-full h-50 lg:h-96 object-cover rounded-lg mb-6"
       />
 
-      <div className="mb-10">
+      <div className="px-4 mb-10">
         <h1 className="text-4xl lg:text-6xl text-center font-bold mb-10">
           {festival.name}
         </h1>
@@ -97,7 +97,7 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
             <p>{festival.location}</p>
           </div>
 
-          <div className="bg-yellow-800 rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
+          <div className="bg-standard rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
             <p className="text-2xl font-serif">STANDARD</p>
 
             <p className="text-5xl font-bold">{festival.basicPrice} €</p>
@@ -127,7 +127,7 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
             })}
           </div>
 
-          <div className="bg-yellow-800 rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
+          <div className="bg-premium rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
             <p className="text-2xl font-serif">PREMIUM</p>
 
             <p className="text-5xl font-bold">{festival.premiumPrice} €</p>
@@ -147,7 +147,7 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
             <p> Tickets: {festival.ticketAvailable}</p>
           </div>
 
-          <div className="bg-yellow-800 rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
+          <div className="bg-vip rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
             <p className="text-2xl font-serif">VIP</p>
 
             <p className="text-5xl font-bold">{festival.vipPrice} €</p>
@@ -162,7 +162,7 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
       </div>
 
       {/*mobile view */}
-      <div className="lg:hidden text-2xl flex flex-col gap-10 p-8 mb-8">
+      <div className="lg:hidden text-xl flex flex-col gap-10 p-4 mb-8">
         <div>
           <div className="flex items-center gap-4">
             <MapPin size={32} />
@@ -196,12 +196,12 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
         </div>
       </div>
 
-      <div className="px-8 lg:hidden flex flex-col gap-6">
-        <div className="bg-yellow-800 rounded-3xl py-4 px-2 text-lg flex justify-around items-center">
+      <div className="px-2 lg:hidden flex flex-col gap-6">
+        <div className="bg-standard rounded-3xl py-4 px-2 flex justify-around items-center">
           <div className="flex flex-col text-center">
             <p className="text-lg font-serif">STANDARD</p>
 
-            <p className="text-2xl font-bold">{festival.basicPrice} €</p>
+            <p className="text-xl font-bold">{festival.basicPrice} €</p>
           </div>
 
           <button
@@ -212,11 +212,11 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
           </button>
         </div>
 
-        <div className="bg-yellow-800 rounded-3xl py-4 px-2 text-lg flex justify-around items-center">
+        <div className="bg-premium rounded-3xl py-4 px-2 flex justify-around items-center">
           <div className="flex flex-col text-center">
-            <p className="text-lg font-serif">PREMIUM</p>
+            <p className="text-md font-serif">PREMIUM</p>
 
-            <p className="text-2xl font-bold">{festival.premiumPrice} €</p>
+            <p className="text-xl font-bold">{festival.premiumPrice} €</p>
           </div>
 
           <button
@@ -227,11 +227,11 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
           </button>
         </div>
 
-        <div className="bg-yellow-800 rounded-3xl py-4 px-2 text-lg flex justify-around items-center">
+        <div className="bg-vip rounded-3xl py-4 px-2 flex justify-around items-center">
           <div className="flex flex-col text-center">
-            <p className="text-lg font-serif">VIP</p>
+            <p className="text-md font-serif">VIP</p>
 
-            <p className="text-2xl font-bold">{festival.vipPrice} €</p>
+            <p className="text-xl font-bold">{festival.vipPrice} €</p>
           </div>
 
           <button

@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 import { Sun, Moon, AlignLeft, X, User } from "lucide-react";
 
 const navLinkClass = ({ isActive }) =>
-  `px-4 py-2 rounded-full text-md transition font-semibold ${
-    isActive ? "bg-sotet text-white" : ""
+  `px-4 py-2 rounded-full text-md transition hover:scale-110 ${
+    isActive ? "underline font-bold" : ""
   }`;
 
 function Header({ darkMode, toggleDarkMode }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   return (
     <>
@@ -17,7 +18,7 @@ function Header({ darkMode, toggleDarkMode }) {
         <div
           className={`${
             darkMode ? "bg-sotet text-white" : "bg-white text-black"
-          } rounded-full px-4 py-2 mt-4 flex items-center gap-4 shadow-md  justify-between`}
+          } rounded-full px-4 py-2 mt-4 flex items-center gap-4 shadow-md justify-between`}
         >
           <NavLink
             to="/"
@@ -34,70 +35,43 @@ function Header({ darkMode, toggleDarkMode }) {
             />
           </NavLink>
 
-          <NavLink to="/festivals" className={navLinkClass}>
-            Browse
-          </NavLink>
-          <NavLink to="/prices" className={navLinkClass}>
-            Prices
-          </NavLink>
-          <NavLink to="/about" className={navLinkClass}>
-            About
-          </NavLink>
-          <NavLink to="/contact" className={navLinkClass}>
-            Contact
-          </NavLink>
-          <NavLink to="/account" className={navLinkClass}>
-            Account
-          </NavLink>
+          <NavLink to="/festivals" className={navLinkClass}>Browse</NavLink>
+          <NavLink to="/prices" className={navLinkClass}>Prices</NavLink>
+          <NavLink to="/cities" className={navLinkClass}>Locations</NavLink>
+          <NavLink to="/about" className={navLinkClass}>About</NavLink>
+          <NavLink to="/account" className={navLinkClass}>Account</NavLink>
 
           <button
             onClick={toggleDarkMode}
-            className="px-2 py-2 rounded-full transition hover:text-vilagos"
+            className="px-2 py-2 rounded-full transition hover:scale-110"
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
         </div>
       </div>
 
-      {/* ✅ Mobil menü ikon */}
+      {/* ✅ Mobil menü ikonok */}
       <div className="lg:hidden flex justify-between items-center px-4 py-4">
         <button onClick={() => setMenuOpen(true)}>
-          <AlignLeft
-            size={30}
-            className={`${darkMode ? "text-white" : "text-black"} `}
-          />
+          <AlignLeft size={30} className={darkMode ? "text-white" : "text-black"} />
         </button>
 
-        <NavLink
-          to="/"
-          className={`${
-            darkMode ? "text-white" : "text-black"
-          } text-xl font-bold`}
-        >
-          <img
-              className="w-100 h-10 rounded-full object-contain"
-              src="img/logo2.png"
-              alt="Logo"
-            />
+        <NavLink to="/" className={darkMode ? "text-white" : "text-black"}>
+          <img className="w-100 h-10 rounded-full object-contain" src="img/logo2.png" alt="Logo" />
         </NavLink>
 
-        <button onClick={() => setMenuOpen(true)}>
-          <User
-            size={30}
-            className={`${darkMode ? "text-white" : "text-black"} `}
-          />
+        <button onClick={() => setLoginOpen(true)}>
+          <User size={30} className={darkMode ? "text-white" : "text-black"} />
         </button>
       </div>
 
-      {/* ✅ Mobil oldalsó menü */}
+      {/* ✅ Mobil navigációs menü - BALRÓL JOBBRA */}
       <div
-        className={`fixed top-0 right-0 h-full w-full z-50 transform transition-all duration-300 ease-in-out ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 left-0 h-full w-full z-50 transform transition-all duration-300 ease-in-out ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         style={{
-          backgroundImage: `url(${
-            darkMode ? "/img/walld.png" : "/img/wall.png"
-          })`,
+          backgroundImage: `url(${darkMode ? "/img/walld.png" : "/img/wall.png"})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -105,70 +79,46 @@ function Header({ darkMode, toggleDarkMode }) {
       >
         <div className="flex justify-end p-4">
           <button onClick={() => setMenuOpen(false)}>
-            <X
-              size={30}
-              className={`${darkMode ? "text-white" : "text-black"} `}
-            />
+            <X size={30} className={darkMode ? "text-white" : "text-black"} />
           </button>
         </div>
-        <nav
-          className={`${
-            darkMode ? "text-white" : "text-black"
-          } flex flex-col items-center gap-6 mt-10 text-lg font-semibold`}
-        >
-          <NavLink
-            to="/festivals"
-            className={`${
-              darkMode ? "text-white" : "text-black"
-            } px-4 py-2 rounded-full text-lg transition font-semibold`}
-            onClick={() => setMenuOpen(false)}
-          >
-            Browse
-          </NavLink>
-          <NavLink
-            to="/menu"
-            className={`${
-              darkMode ? "text-white" : "text-black"
-            } px-4 py-2 rounded-full text-lg transition font-semibold`}
-            onClick={() => setMenuOpen(false)}
-          >
-            Prices
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={`${
-              darkMode ? "text-white" : "text-black"
-            } px-4 py-2 rounded-full text-lg transition font-semibold`}
-            onClick={() => setMenuOpen(false)}
-          >
-            About
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={`${
-              darkMode ? "text-white" : "text-black"
-            } px-4 py-2 rounded-full text-lg transition font-semibold`}
-            onClick={() => setMenuOpen(false)}
-          >
-            Contact
-          </NavLink>
-          <NavLink
-            to="/delivery"
-            className={`${
-              darkMode ? "text-white" : "text-black"
-            } px-4 py-2 rounded-full text-lg transition font-semibold`}
-            onClick={() => setMenuOpen(false)}
-          >
-            Account
-          </NavLink>
-
-          <button
-            onClick={toggleDarkMode}
-            className="mt-4 px-4 py-2 rounded-full"
-          >
+        <nav className={`${
+          darkMode ? "text-white" : "text-black"
+        } flex flex-col items-center gap-6 mt-10 text-lg font-semibold`}>
+          <NavLink to="/festivals" className={navLinkClass} onClick={() => setMenuOpen(false)}>Browse</NavLink>
+          <NavLink to="/prices" className={navLinkClass} onClick={() => setMenuOpen(false)}>Prices</NavLink>
+          <NavLink to="/cities" className={navLinkClass} onClick={() => setMenuOpen(false)}>Locations</NavLink>
+          <NavLink to="/about" className={navLinkClass} onClick={() => setMenuOpen(false)}>About</NavLink>
+          <NavLink to="/account" className={navLinkClass} onClick={() => setMenuOpen(false)}>Account</NavLink>
+          <button onClick={toggleDarkMode} className="mt-4 px-4 py-2 rounded-full">
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
         </nav>
+      </div>
+
+      {/* ✅ Mobil login/register panel - JOBBRÓL BALRA */}
+      <div
+        className={`fixed top-0 right-0 h-full w-full z-50 transform transition-all duration-300 ease-in-out ${
+          loginOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        style={{
+          backgroundImage: `url(${darkMode ? "/img/walld.png" : "/img/wall.png"})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="flex justify-end p-4">
+          <button onClick={() => setLoginOpen(false)}>
+            <X size={30} className={darkMode ? "text-white" : "text-black"} />
+          </button>
+        </div>
+        <div className="flex flex-col items-center justify-center px-8 mt-20">
+          <h2 className="text-2xl font-bold mb-4">Login or Register</h2>
+          <input type="text" placeholder="Email" className="mb-4 px-4 py-2 rounded-xl w-full max-w-md" />
+          <input type="password" placeholder="Password" className="mb-4 px-4 py-2 rounded-xl w-full max-w-md" />
+          <button className="bg-blue-600 text-white py-2 px-6 rounded-xl">Continue</button>
+        </div>
       </div>
     </>
   );
