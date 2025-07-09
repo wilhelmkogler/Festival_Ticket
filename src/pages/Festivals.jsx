@@ -130,6 +130,15 @@ function Festivals({ darkMode, setSelectedFestival }) {
     ...new Set(festivals.map((f) => new Date(f.dateStart).getFullYear())),
   ].sort();
 
+
+  const getButtonClass = (active) => {
+    return active
+      ? "bg-lila text-white"
+      : darkMode
+      ? "bg-transparent text-white"
+      : "bg-white text-black";
+  };
+
   return (
     <div
       className={`max-w-7xl mx-4 lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
@@ -149,7 +158,9 @@ function Festivals({ darkMode, setSelectedFestival }) {
           <div className="flex flex-col gap-6">
             <button
               className={`block lg:hidden p-2 text-xl rounded-xl ${
-                darkMode ? "bg-purple-900 text-white" : "bg-purple-500 text-white"
+                darkMode
+                  ? "bg-lila text-white"
+                  : "bg-purple-500 text-white"
               }`}
               type="button"
               onClick={() => setVisible(!visible)}
@@ -183,22 +194,20 @@ function Festivals({ darkMode, setSelectedFestival }) {
                   Sort by Start Date (Latest First)
                 </option>
                 <option value="priceLow">Sort by Price (Lowest First)</option>
-                <option value="priceHigh">
-                  Sort by Price (Highest First)
-                </option>
+                <option value="priceHigh">Sort by Price (Highest First)</option>
               </select>
             </div>
 
             <div className="flex flex-row-reverse gap-2">
               <button
                 onClick={applyFilters}
-                className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 w-full"
+                className="bg-lila text-white px-4 py-2 rounded-full hover:bg-purple-500 w-full"
               >
                 Apply Filters
               </button>
               <button
                 onClick={resetFilters}
-                className="bg-gray-400 text-white px-4 py-2 rounded-full hover:bg-gray-500 w-full"
+                className="bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-500 w-full"
               >
                 Reset Filters
               </button>
@@ -215,15 +224,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                     <button
                       key={country}
                       onClick={() => toggleFilterValue("countries", country)}
-                      className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${
-                        filters.countries.includes(country)
-                          ? "bg-orange-500 text-black"
-                          : "text-black"
-                      } ${
-                        darkMode
-                          ? "bg-transparent text-white "
-                          : "bg-white text-black"
-                      }`}
+                      className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(filters.countries.includes(country))}`}
                     >
                       {country}
                     </button>
@@ -238,15 +239,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                     <button
                       key={g}
                       onClick={() => toggleFilterValue("genres", g)}
-                      className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${
-                        filters.genres.includes(g)
-                          ? "bg-orange-500 text-black"
-                          : "text-black"
-                      } ${
-                        darkMode
-                          ? "bg-transparent text-white "
-                          : "bg-white text-black"
-                      }`}
+                      className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(filters.genres.includes(g))}`}
                     >
                       {g}
                     </button>
@@ -261,16 +254,8 @@ function Festivals({ darkMode, setSelectedFestival }) {
                 {allYears.map((year) => (
                   <button
                     key={year}
-                    className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${
-                      filters.years.includes(year)
-                        ? "bg-orange-500 text-black"
-                        : "text-black"
-                    } ${
-                      darkMode
-                        ? "bg-transparent text-white "
-                        : "bg-white text-black"
-                    }`}
                     onClick={() => toggleFilterValue("years", year)}
+                    className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(filters.years.includes(year))}`}
                   >
                     {year}
                   </button>
@@ -284,16 +269,8 @@ function Festivals({ darkMode, setSelectedFestival }) {
                 {monthNames.map((month) => (
                   <button
                     key={month}
-                    className={`px-2 py-2 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${
-                      filters.months.includes(month)
-                        ? "bg-orange-500 text-black"
-                        : "text-black"
-                    } ${
-                      darkMode
-                        ? "bg-transparent text-white "
-                        : "bg-white text-black"
-                    }`}
                     onClick={() => toggleFilterValue("months", month)}
+                    className={`px-2 py-2 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(filters.months.includes(month))}`}
                   >
                     {month}
                   </button>
@@ -362,9 +339,9 @@ function Festivals({ darkMode, setSelectedFestival }) {
                   </p>
                 </div>
 
-                <div className="my-10 text-md lg:text-2xl font-semibold flex justify-around">
-                  <p>Tickets: {festival.ticketAvailable}</p>
-                  <p>Price: {festival.basicPrice} €</p>
+                <div className="my-8 text-md lg:text-2xl font-semibold flex justify-around">
+                  <p>{festival.ticketAvailable} tickets left</p>
+                  <p>{festival.basicPrice} € starting price</p>
                 </div>
 
                 <p className="font-bold text-md lg:text-2xl text-center">
@@ -379,7 +356,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                     setSelectedFestival(festival);
                     navigate("/festival_details");
                   }}
-                  className="w-full bg-green-500 text-white text-xl lg:text-3xl py-2 lg:py-4 mt-4 rounded-full transition-all duration-150 hover:bg-green-600"
+                  className="w-full bg-lila text-white text-xl lg:text-3xl py-2 lg:py-4 mt-4 rounded-full transition-all duration-150 hover:bg-purple-500"
                 >
                   Select
                 </button>

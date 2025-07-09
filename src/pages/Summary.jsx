@@ -1,38 +1,136 @@
-import { useEffect, useState, useRef } from "react";
-import { QRCodeCanvas } from "qrcode.react";
+import { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { QRCodeCanvas } from "qrcode.react";
+import ReactDOM from "react-dom/client";
 
 const Summary = ({ darkMode }) => {
   const [order, setOrder] = useState(null);
   const [error, setError] = useState("");
-  const pdfRefs = useRef({});
 
   const handleDownloadPDF = async (item) => {
-    const pdfRef = pdfRefs.current[item._id];
-    if (!pdfRef) return;
+    const container = document.createElement("div");
+    container.style.position = "absolute";
+    container.style.left = "-9999px";
+    document.body.appendChild(container);
 
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    const canvas = await html2canvas(pdfRef, {
-      scale: 2,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: "#ffffff",
-    });
+    const element = document.createElement("div");
+    container.appendChild(element);
 
+    const root = ReactDOM.createRoot(element);
+    root.render(
+      <div
+        style={{
+          background: "white",
+          width: 420,
+          padding: 16,
+          fontSize: 12,
+          color: "black",
+        }}
+      >
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: 80,
+            marginBottom: 16,
+          }}
+        >
+          <img
+            src="img/wall.png"
+            alt="Banner"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: 12,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -55%)",
+              fontSize: 24,
+              fontWeight: "bold",
+              color: "white",
+            }}
+          >
+            {item.name}
+          </div>
+        </div>
+        <div
+          style={{ display: "flex", justifyContent: "space-between", gap: 12 }}
+        >
+          <div>
+            <p>
+              <strong>Name:</strong> {order.name}
+            </p>
+            <p>
+              <strong>Email:</strong> {order.email}
+            </p>
+            <p>
+              <strong>Phone:</strong> {order.phone}
+            </p>
+            <p style={{ marginTop: 8 }}>
+              <strong>Festival:</strong> {item.name}
+            </p>
+            <p>
+              <strong>Location:</strong> {item.location}
+            </p>
+            <p>
+              <strong>Date:</strong>{" "}
+              {new Date(item.dateStart).toLocaleDateString("en-GB")} -{" "}
+              {new Date(item.dateEnd).toLocaleDateString("en-GB")}
+            </p>
+            <p>
+              <strong>Type:</strong> {item.type}
+            </p>
+            <p>
+              <strong>Quantity:</strong> {item.quantity}
+            </p>
+            <p>
+              <strong>Price:</strong> {item.price} €
+            </p>
+          </div>
+          <div style={{ textAlign: "center", marginTop: 16 }}>
+            <QRCodeCanvas
+              value={JSON.stringify({
+                customer: {
+                  name: order.name,
+                  email: order.email,
+                  phone: order.phone,
+                },
+                ticket: item,
+              })}
+              size={120}
+            />
+            <p style={{ marginTop: 8 }}>{item.type}</p>
+          </div>
+        </div>
+      </div>
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    const canvas = await html2canvas(element, { scale: 2, useCORS: true });
     const imgData = canvas.toDataURL("image/png");
+
     const pdf = new jsPDF({
       orientation: "portrait",
       unit: "mm",
       format: "a4",
     });
-    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pdfWidth = pdf.internal.pageSize.getWidth() - 20;
     const imgProps = pdf.getImageProperties(imgData);
-    const pdfWidth = pageWidth - 20;
     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
     pdf.addImage(imgData, "PNG", 10, 10, pdfWidth, pdfHeight);
     pdf.save(`ticket_${item.name.replace(/\s+/g, "_")}.pdf`);
+
+    root.unmount();
+    document.body.removeChild(container);
   };
 
   useEffect(() => {
@@ -55,8 +153,6 @@ const Summary = ({ darkMode }) => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-
-
 
   return (
     <div
@@ -86,7 +182,6 @@ const Summary = ({ darkMode }) => {
           </div>
         </div>
 
-        {/* Asztali nézethez táblázat */}
         <table
           className={`w-full text-center table-auto border mt-10 lg:mt-14 hidden lg:table ${
             darkMode ? "border-white" : "border-black"
@@ -117,12 +212,12 @@ const Summary = ({ darkMode }) => {
                   {new Date(item.dateStart).toLocaleDateString("en-gb", {
                     day: "numeric",
                   })}{" "}
-                  -{" "}
+                  -
                   {new Date(item.dateEnd).toLocaleDateString("en-gb", {
                     day: "numeric",
                     month: "long",
                   })}
-                  ,{" "}
+                  ,
                   {new Date(item.dateEnd).toLocaleDateString("en-gb", {
                     year: "numeric",
                   })}
@@ -134,87 +229,17 @@ const Summary = ({ darkMode }) => {
                 <td className="p-4 border text-center">
                   <button
                     onClick={() => handleDownloadPDF(item)}
-                    className="bg-green-500 text-white w-full py-2 rounded-xl hover:bg-green-800"
+                    className="bg-lila text-white w-full py-2 rounded-xl hover:bg-purple-700"
                     type="button"
                   >
                     Download PDF
                   </button>
-                  <div style={{ position: "absolute", left: "-9999px" }}>
-                    <div
-                      ref={(el) => (pdfRefs.current[item._id] = el)}
-                      className="bg-white rounded-xl w-[380px] sm:w-[420px] p-4 text-black"
-                    >
-                      <div className="relative w-full h-20 mb-4">
-                        <img
-                          src="img/wall.png"
-                          alt="Banner"
-                          className="w-full h-full object-cover rounded-xl"
-                        />
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[55%]">
-                          <p
-                            className="text-transparent text-3xl font-semibold"
-                            style={{ WebkitTextStroke: "1px white" }}
-                          >
-                            {item.name}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex justify-around gap-6">
-                        <div className="text-xs text-left">
-                          <p>
-                            <strong>Name:</strong> {order.name}
-                          </p>
-                          <p>
-                            <strong>Email:</strong> {order.email}
-                          </p>
-                          <p>
-                            <strong>Phone:</strong> {order.phone}
-                          </p>
-                          <p className="mt-4">
-                            <strong>Festival:</strong> {item.name}
-                          </p>
-                          <p>
-                            <strong>Location:</strong> {item.location}
-                          </p>
-                          <p>
-                            <strong>Date:</strong>{" "}
-                            {new Date(item.dateStart).toLocaleDateString("en-GB")}{" "}
-                            - {new Date(item.dateEnd).toLocaleDateString("en-GB")}
-                          </p>
-                          <p>
-                            <strong>Type:</strong> {item.type}
-                          </p>
-                          <p>
-                            <strong>Quantity:</strong> {item.quantity}
-                          </p>
-                          <p>
-                            <strong>Price:</strong> {item.price} €
-                          </p>
-                        </div>
-                        <div className="mt-4 text-center">
-                          <QRCodeCanvas
-                            value={JSON.stringify({
-                              customer: {
-                                name: order.name,
-                                email: order.email,
-                                phone: order.phone,
-                              },
-                              ticket: item,
-                            })}
-                            size={120}
-                          />
-                          <p className="mt-2 text-sm">{item.type}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
 
-        {/* Mobil nézethez kártyák */}
         <div className="block lg:hidden mt-10 space-y-6">
           {order.items.map((item, index) => (
             <div
@@ -223,20 +248,32 @@ const Summary = ({ darkMode }) => {
                 darkMode ? "border-white" : "border-black"
               }`}
             >
-              <p><strong>Festival:</strong> {item.name}</p>
-              <p><strong>Location:</strong> {item.location}</p>
+              <p>
+                <strong>Festival:</strong> {item.name}
+              </p>
+              <p>
+                <strong>Location:</strong> {item.location}
+              </p>
               <p>
                 <strong>Date:</strong>{" "}
                 {new Date(item.dateStart).toLocaleDateString("en-gb")} -{" "}
                 {new Date(item.dateEnd).toLocaleDateString("en-gb")}
               </p>
-              <p><strong>Ticket:</strong> {item.type}</p>
-              <p><strong>Price:</strong> {item.price} €</p>
-              <p><strong>Quantity:</strong> {item.quantity}</p>
-              <p><strong>Total:</strong> {item.price * item.quantity} €</p>
+              <p>
+                <strong>Ticket:</strong> {item.type}
+              </p>
+              <p>
+                <strong>Price:</strong> {item.price} €
+              </p>
+              <p>
+                <strong>Quantity:</strong> {item.quantity}
+              </p>
+              <p>
+                <strong>Total:</strong> {item.price * item.quantity} €
+              </p>
               <button
                 onClick={() => handleDownloadPDF(item)}
-                className="mt-4 bg-green-500 text-white w-full py-2 rounded-xl hover:bg-green-800"
+                className="mt-4 bg-lila text-white w-full py-2 rounded-xl hover:bg-purple-800"
               >
                 Download PDF
               </button>

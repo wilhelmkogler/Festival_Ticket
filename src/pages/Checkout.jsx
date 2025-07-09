@@ -188,7 +188,7 @@ function CheckoutForm({ cart, setCart, darkMode }) {
               type="submit"
               disabled={!stripe || loading}
               className={`w-full ${
-                loading ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"
+                loading ? "bg-gray-400" : "bg-lila hover:bg-puple-700"
               } text-white py-3 rounded-full text-lg`}
             >
               {loading ? "Processing..." : "Confirm Payment"}

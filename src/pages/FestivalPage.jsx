@@ -97,7 +97,11 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
             <p>{festival.location}</p>
           </div>
 
-          <div className="bg-standard rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
+          <div
+            className={`bg-standard rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4 ${
+              darkMode ? "text-white" : "text-white"
+            }`}
+          >
             <p className="text-2xl font-serif">STANDARD</p>
 
             <p className="text-5xl font-bold">{festival.basicPrice} €</p>
@@ -127,7 +131,11 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
             })}
           </div>
 
-          <div className="bg-premium rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
+          <div
+            className={`bg-premium rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4 ${
+              darkMode ? "text-white" : "text-white"
+            }`}
+          >
             <p className="text-2xl font-serif">PREMIUM</p>
 
             <p className="text-5xl font-bold">{festival.premiumPrice} €</p>
@@ -147,7 +155,11 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
             <p> Tickets: {festival.ticketAvailable}</p>
           </div>
 
-          <div className="bg-vip rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4">
+          <div
+            className={`bg-vip rounded-3xl px-24 py-6 text-xl flex flex-col justify-between items-center gap-4 ${
+              darkMode ? "text-white" : "text-white"
+            }`}
+          >
             <p className="text-2xl font-serif">VIP</p>
 
             <p className="text-5xl font-bold">{festival.vipPrice} €</p>
@@ -196,7 +208,11 @@ function FestivalPage({ darkMode, selectedFestival, cart, setCart }) {
         </div>
       </div>
 
-      <div className="px-2 lg:hidden flex flex-col gap-6">
+      <div
+        className={`px-2 lg:hidden flex flex-col gap-6 ${
+          darkMode ? "text-white" : "text-white"
+        }`}
+      >
         <div className="bg-standard rounded-3xl py-4 px-2 flex justify-around items-center">
           <div className="flex flex-col text-center">
             <p className="text-lg font-serif">STANDARD</p>

@@ -12,6 +12,7 @@ export default {
         standard: "#7ca9f2",
         premium: "#bf77f2",
         vip: "#e6b120",
+        lila: "#6d0466",
       },
       fontFamily: {
         fancy: ['"Fascinate Inline"', 'cursive'],
