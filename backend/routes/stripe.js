@@ -10,7 +10,6 @@ router.post("/create-payment-intent", async (req, res) => {
     return res.status(400).json({ error: "Cart is empty or invalid." });
   }
 
-  // Total összeadás
   const amount = cart.reduce((total, item) => {
     const price = item.price || 0;
     const quantity = item.quantity || 1;

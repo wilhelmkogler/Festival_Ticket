@@ -31,7 +31,7 @@ function CheckoutForm({ cart, setCart, darkMode }) {
   const amountInCents = Math.round(total * 100);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/stripe/create-payment-intent", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/stripe/create-payment-intent`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount: amountInCents, cart }),
@@ -49,7 +49,6 @@ function CheckoutForm({ cart, setCart, darkMode }) {
     setError("");
 
     try {
-      // 2. Fizetés végrehajtása
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
@@ -67,21 +66,22 @@ function CheckoutForm({ cart, setCart, darkMode }) {
         return;
       }
 
-      // 3. Rendelés mentése az adatbázisba
-      const orderRes = await fetch("http://localhost:5000/api/orders/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: customerName,
-          email: customerEmail,
-          phone: customerPhone,
-          items: cart, // fontos! ne legyen stringify-olva!
-        }),
-      });
+      const orderRes = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/orders/create`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: customerName,
+            email: customerEmail,
+            phone: customerPhone,
+            items: cart,
+          }),
+        }
+      );
 
       if (!orderRes.ok) throw new Error("Order saving failed");
 
-      // 4. Sikeres fizetés
       setCart([]);
       navigate("/summary");
     } catch (err) {
@@ -94,7 +94,7 @@ function CheckoutForm({ cart, setCart, darkMode }) {
 
   return (
     <div
-      className={`max-w-7xl mx-auto py-6 lg:mt-40 px-4 ${
+      className={`max-w-7xl lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
         darkMode ? "text-white" : "text-black"
       }`}
     >

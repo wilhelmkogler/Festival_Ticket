@@ -11,11 +11,7 @@ const FestivalSchema = new mongoose.Schema({
   description: String,
   basicPrice: Number,
   premiumPrice: Number,
-  vipPrice: Number
+  vipPrice: Number,
 });
-
-
-
-
 
 module.exports = mongoose.model("Festival", FestivalSchema, "festivals");

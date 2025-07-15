@@ -15,6 +15,7 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [selectedFestival, setSelectedFestival] = useState(null);
   const [cart, setCart] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const savedMode = localStorage.getItem("darkMode");
@@ -22,10 +23,22 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile(); // első betöltéskor
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
     document.body.style.backgroundImage = `url(${
       darkMode ? "/img/walld.png" : "/img/wall.png"
     })`;
-  }, [darkMode]);
+    document.body.style.backgroundAttachment = isMobile ? "scroll" : "fixed";
+  }, [darkMode, isMobile]);
 
   const toggleDarkMode = () => {
     setDarkMode((prev) => {
@@ -42,7 +55,7 @@ export default function App() {
           backgroundImage: `url(${
             darkMode ? "/img/walld.png" : "/img/wall.png"
           })`,
-          backgroundAttachment: "fixed",
+          backgroundAttachment: isMobile ? "scroll" : "fixed",
         }}
       ></div>
 
@@ -76,15 +89,11 @@ export default function App() {
             />
             <Route
               path="/checkout"
-              
-              element={<Checkout cart={cart}
-              setCart={setCart} darkMode={darkMode} />}
+              element={
+                <Checkout cart={cart} setCart={setCart} darkMode={darkMode} />
+              }
             />
-            <Route
-              path="/summary"
-              
-              element={<Summary darkMode={darkMode} />}
-            />
+            <Route path="/summary" element={<Summary darkMode={darkMode} />} />
           </Routes>
         </main>
         <Footer darkMode={darkMode} />

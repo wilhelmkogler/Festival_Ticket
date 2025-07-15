@@ -48,7 +48,7 @@ function Prices({ darkMode }) {
 
   return (
     <div
-      className={`max-w-7xl mx-4 lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
+      className={`max-w-7xl lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
         darkMode ? "text-white" : "text-black"
       }`}
     >

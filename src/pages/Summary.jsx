@@ -23,7 +23,7 @@ const Summary = ({ darkMode }) => {
         style={{
           background: "white",
           width: 420,
-          padding: 16,
+          padding: 4,
           fontSize: 12,
           color: "black",
         }}
@@ -81,11 +81,21 @@ const Summary = ({ darkMode }) => {
             </p>
             <p>
               <strong>Date:</strong>{" "}
-              {new Date(item.dateStart).toLocaleDateString("en-GB")} -{" "}
-              {new Date(item.dateEnd).toLocaleDateString("en-GB")}
+              {new Date(item.dateStart).toLocaleDateString("en-gb", {
+                day: "numeric",
+              })}{" "}
+              -{" "}
+              {new Date(item.dateEnd).toLocaleDateString("en-gb", {
+                day: "numeric",
+                month: "long",
+              })}
+              ,{" "}
+              {new Date(item.dateEnd).toLocaleDateString("en-gb", {
+                year: "numeric",
+              })}
             </p>
             <p>
-              <strong>Type:</strong> {item.type}
+              <strong>Ticket:</strong> {item.type}
             </p>
             <p>
               <strong>Quantity:</strong> {item.quantity}
@@ -134,7 +144,7 @@ const Summary = ({ darkMode }) => {
   };
 
   useEffect(() => {
-    fetch("http://192.168.1.7:5000/api/orders/latest")
+    fetch(`${import.meta.env.VITE_API_URL}/api/orders/latest`)
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
@@ -143,11 +153,11 @@ const Summary = ({ darkMode }) => {
           setOrder(data);
         }
       })
-      .catch(() => setError("Hiba a rendelés lekérésekor"));
+      .catch(() => setError("Error accessing the order"));
   }, []);
 
   if (error) return <p>{error}</p>;
-  if (!order) return <p>Betöltés...</p>;
+  if (!order) return <p>Loading...</p>;
 
   const subtotal = order.items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -156,7 +166,7 @@ const Summary = ({ darkMode }) => {
 
   return (
     <div
-      className={`max-w-7xl mx-4 lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
+      className={`max-w-7xl lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
         darkMode ? "text-white" : "text-black"
       }`}
     >
@@ -164,7 +174,11 @@ const Summary = ({ darkMode }) => {
         Summary
       </h1>
 
-      <div className={`rounded-3xl p-6 ${darkMode ? "bg-sotet" : "bg-white"}`}>
+      <div
+        className={`rounded-3xl p-4 lg:p-6 ${
+          darkMode ? "bg-sotet" : "bg-white"
+        }`}
+      >
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10">
           <p className="text-xl lg:text-3xl">
             Thank you for your purchase <strong>{order.name}</strong>!
@@ -212,12 +226,12 @@ const Summary = ({ darkMode }) => {
                   {new Date(item.dateStart).toLocaleDateString("en-gb", {
                     day: "numeric",
                   })}{" "}
-                  -
+                  -{" "}
                   {new Date(item.dateEnd).toLocaleDateString("en-gb", {
                     day: "numeric",
                     month: "long",
                   })}
-                  ,
+                  ,{" "}
                   {new Date(item.dateEnd).toLocaleDateString("en-gb", {
                     year: "numeric",
                   })}
@@ -256,8 +270,18 @@ const Summary = ({ darkMode }) => {
               </p>
               <p>
                 <strong>Date:</strong>{" "}
-                {new Date(item.dateStart).toLocaleDateString("en-gb")} -{" "}
-                {new Date(item.dateEnd).toLocaleDateString("en-gb")}
+                {new Date(item.dateStart).toLocaleDateString("en-gb", {
+                  day: "numeric",
+                })}{" "}
+                -{" "}
+                {new Date(item.dateEnd).toLocaleDateString("en-gb", {
+                  day: "numeric",
+                  month: "long",
+                })}
+                ,{" "}
+                {new Date(item.dateEnd).toLocaleDateString("en-gb", {
+                  year: "numeric",
+                })}
               </p>
               <p>
                 <strong>Ticket:</strong> {item.type}

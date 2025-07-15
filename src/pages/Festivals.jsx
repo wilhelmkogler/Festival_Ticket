@@ -55,7 +55,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
   };
 
   useEffect(() => {
-    fetch("http://192.168.1.7:5000/api/festivals")
+    fetch(`${import.meta.env.VITE_API_URL}/api/festivals`)
       .then((res) => res.json())
       .then((data) => {
         const sorted = sortFestivals(data, "upcoming");
@@ -130,7 +130,6 @@ function Festivals({ darkMode, setSelectedFestival }) {
     ...new Set(festivals.map((f) => new Date(f.dateStart).getFullYear())),
   ].sort();
 
-
   const getButtonClass = (active) => {
     return active
       ? "bg-lila text-white"
@@ -141,7 +140,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
 
   return (
     <div
-      className={`max-w-7xl mx-4 lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
+      className={`max-w-7xl lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
         darkMode ? "text-white" : "text-black"
       }`}
     >
@@ -158,9 +157,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
           <div className="flex flex-col gap-6">
             <button
               className={`block lg:hidden p-2 text-xl rounded-xl ${
-                darkMode
-                  ? "bg-lila text-white"
-                  : "bg-purple-500 text-white"
+                darkMode ? "bg-lila text-white" : "bg-lila text-white"
               }`}
               type="button"
               onClick={() => setVisible(!visible)}
@@ -224,7 +221,9 @@ function Festivals({ darkMode, setSelectedFestival }) {
                     <button
                       key={country}
                       onClick={() => toggleFilterValue("countries", country)}
-                      className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(filters.countries.includes(country))}`}
+                      className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(
+                        filters.countries.includes(country)
+                      )}`}
                     >
                       {country}
                     </button>
@@ -239,7 +238,9 @@ function Festivals({ darkMode, setSelectedFestival }) {
                     <button
                       key={g}
                       onClick={() => toggleFilterValue("genres", g)}
-                      className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(filters.genres.includes(g))}`}
+                      className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(
+                        filters.genres.includes(g)
+                      )}`}
                     >
                       {g}
                     </button>
@@ -255,7 +256,9 @@ function Festivals({ darkMode, setSelectedFestival }) {
                   <button
                     key={year}
                     onClick={() => toggleFilterValue("years", year)}
-                    className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(filters.years.includes(year))}`}
+                    className={`px-3 py-1 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(
+                      filters.years.includes(year)
+                    )}`}
                   >
                     {year}
                   </button>
@@ -270,14 +273,16 @@ function Festivals({ darkMode, setSelectedFestival }) {
                   <button
                     key={month}
                     onClick={() => toggleFilterValue("months", month)}
-                    className={`px-2 py-2 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(filters.months.includes(month))}`}
+                    className={`px-2 py-2 rounded-full border-2 text-md hover:scale-125 transition-all duration-300 ${getButtonClass(
+                      filters.months.includes(month)
+                    )}`}
                   >
                     {month}
                   </button>
                 ))}
               </div>
             </div>
-            <div>
+            <div className="pb-12">
               <p className="font-medium">Price (€)</p> <hr />
               <div className="flex mt-2 gap-4">
                 <input
@@ -303,18 +308,18 @@ function Festivals({ darkMode, setSelectedFestival }) {
           </div>
 
           {/* Festival cards */}
-          <div className="flex w-full flex-col gap-6">
+          <div className="flex w-full flex-col gap-4">
             {filtered.map((festival) => (
               <div
                 key={festival._id}
-                className={` rounded-xl shadow-md p-4 lg:p-6 transition transform ${
-                  darkMode ? "bg-sotet" : "bg-gray-100"
+                className={`rounded-xl shadow-md p-3 lg:p-6 transition transform ${
+                  darkMode ? "bg-sotet" : "bg-white"
                 }`}
               >
                 <img
                   src={festival.image}
                   alt={festival.name}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
+                  className="w-full h-40 lg:h-60 object-cover rounded-lg mb-4"
                 />
                 <div className="flex justify-between items-center text-lg lg:text-3xl font-bold">
                   <p>{festival.name}</p>
@@ -339,9 +344,13 @@ function Festivals({ darkMode, setSelectedFestival }) {
                   </p>
                 </div>
 
-                <div className="my-8 text-md lg:text-2xl font-semibold flex justify-around">
-                  <p>{festival.ticketAvailable} tickets left</p>
-                  <p>{festival.basicPrice} € starting price</p>
+                <div className="my-8 text-sm lg:text-2xl font-semibold flex justify-around">
+                  <p className="bg-standard p-2 lg:p-4 rounded-full">
+                    {festival.ticketAvailable} tickets left
+                  </p>
+                  <p className="bg-vip p-2 lg:p-4 rounded-full">
+                    {festival.basicPrice} € starting price
+                  </p>
                 </div>
 
                 <p className="font-bold text-md lg:text-2xl text-center">
@@ -356,7 +365,7 @@ function Festivals({ darkMode, setSelectedFestival }) {
                     setSelectedFestival(festival);
                     navigate("/festival_details");
                   }}
-                  className="w-full bg-lila text-white text-xl lg:text-3xl py-2 lg:py-4 mt-4 rounded-full transition-all duration-150 hover:bg-purple-500"
+                  className="w-full bg-lila text-white text-xl lg:text-3xl py-2 lg:py-4 mt-4 rounded-xl transition-all duration-150 hover:bg-purple-500"
                 >
                   Select
                 </button>

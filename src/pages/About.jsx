@@ -65,23 +65,21 @@ function About({ darkMode }) {
   const [openIndexes, setOpenIndexes] = useState([]);
 
   const toggleFAQ = (index) => {
-    setOpenIndexes(
-      (prev) =>
-        prev.includes(index)
-          ? prev.filter((i) => i !== index) // ha benne van, zárjuk be
-          : [...prev, index] // ha nincs benne, nyissuk meg
+    setOpenIndexes((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
   return (
-    <div className={`max-w-7xl mx-4 lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
+    <div
+      className={`max-w-7xl lg:mx-auto py-6 my-12 lg:mt-40 p-4 ${
         darkMode ? "text-white" : "text-black"
-      }`}>
+      }`}
+    >
       <h1 className="text-3xl lg:text-5xl font-bold mb-10 lg:mb-16 text-center">
         Questions
       </h1>
 
-      
       <div className="space-y-8">
         {faqData.map((faq, index) => (
           <div

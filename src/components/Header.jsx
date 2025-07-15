@@ -13,7 +13,6 @@ function Header({ darkMode, toggleDarkMode }) {
 
   return (
     <>
-      {/* ✅ Asztali navigáció */}
       <div className="hidden lg:flex absolute top-0 left-1/2 transform -translate-x-1/2 z-50">
         <div
           className={`${
@@ -45,10 +44,7 @@ function Header({ darkMode, toggleDarkMode }) {
             Locations
           </NavLink>
           <NavLink to="/about" className={navLinkClass}>
-            About
-          </NavLink>
-          <NavLink to="/account" className={navLinkClass}>
-            Account
+            Questions
           </NavLink>
 
           <button
@@ -60,7 +56,6 @@ function Header({ darkMode, toggleDarkMode }) {
         </div>
       </div>
 
-      {/* ✅ Mobil menü ikonok */}
       <div className="lg:hidden flex justify-between items-center px-4 py-4">
         <button onClick={() => setMenuOpen(true)}>
           <AlignLeft
@@ -77,12 +72,14 @@ function Header({ darkMode, toggleDarkMode }) {
           />
         </NavLink>
 
-        <button onClick={() => setLoginOpen(true)}>
-          <User size={30} className={darkMode ? "text-white" : "text-black"} />
+        <button
+          onClick={toggleDarkMode}
+          className={darkMode ? "text-white" : "text-black"}
+        >
+          {darkMode ? <Sun size={28} /> : <Moon size={28} />}
         </button>
       </div>
 
-      {/* ✅ Mobil navigációs menü - BALRÓL JOBBRA */}
       <div
         className={`fixed top-0 left-0 h-full w-full z-50 transform transition-all duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
@@ -104,7 +101,7 @@ function Header({ darkMode, toggleDarkMode }) {
         <nav
           className={`${
             darkMode ? "text-white" : "text-black"
-          } h-[80vh] flex flex-col items-center justify-center gap-6 text-xl font-semibold`}
+          } h-[80vh] flex flex-col items-center justify-center gap-16 text-2xl font-bold`}
         >
           <NavLink
             to="/festivals"
@@ -132,63 +129,9 @@ function Header({ darkMode, toggleDarkMode }) {
             className={navLinkClass}
             onClick={() => setMenuOpen(false)}
           >
-            About
+            Questions
           </NavLink>
-          <NavLink
-            to="/account"
-            className={navLinkClass}
-            onClick={() => setMenuOpen(false)}
-          >
-            Account
-          </NavLink>
-          <button
-            onClick={toggleDarkMode}
-            className="mt-4 px-4 py-2 rounded-full"
-          >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
         </nav>
-      </div>
-
-      {/* ✅ Mobil login/register panel - JOBBRÓL BALRA */}
-      <div
-        className={`fixed top-0 right-0 h-full w-full z-50 transform transition-all duration-300 ease-in-out ${
-          loginOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-        style={{
-          backgroundImage: `url(${
-            darkMode ? "/img/walld.png" : "/img/wall.png"
-          })`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="flex justify-end p-4">
-          <button onClick={() => setLoginOpen(false)}>
-            <X size={30} className={darkMode ? "text-white" : "text-black"} />
-          </button>
-        </div>
-        <div
-          className={`${
-            darkMode ? "text-white" : "text-black"
-          } h-[80vh] flex flex-col items-center justify-center gap-6 px-10`}
-        >
-          <h2 className="text-2xl font-bold mb-4">Login or Register</h2>
-          <input
-            type="text"
-            placeholder="Email"
-            className="mb-4 px-4 py-2 rounded-xl w-full max-w-md"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="mb-4 px-4 py-2 rounded-xl w-full max-w-md"
-          />
-          <button className="bg-lila text-white py-2 px-6 rounded-xl">
-            Continue
-          </button>
-        </div>
       </div>
     </>
   );

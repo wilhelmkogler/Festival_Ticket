@@ -13,14 +13,14 @@ function Home({ darkMode }) {
   ];
 
   const toplocations = [
-    { city: "Ibiza", image: "img/barcelona.jpg" },
-    { city: "Lisbon", image: "img/lisbon.jpg" },
-    { city: "Amsterdam", image: "img/athens.jpg" },
+    { city: "Ibiza", image: "img/cities/barcelona.jpg" },
+    { city: "Lisbon", image: "img/cities/lisbon.jpg" },
+    { city: "Amsterdam", image: "img/cities/athens.jpg" },
   ];
 
   return (
     <div
-      className={`max-w-7xl mx-4 lg:mx-auto py-6 my-12 lg:mt-32 p-4 ${
+      className={`max-w-7xl lg:mx-auto py-6 my-12 lg:mt-32 p-4 ${
         darkMode ? "text-white" : "text-black"
       }`}
     >
@@ -41,7 +41,7 @@ function Home({ darkMode }) {
               </h1>
             </div>
 
-            <p className="text-lg lg:text-2xl text-center">
+            <p className="text-sm lg:text-2xl text-center">
               The ultimate celebration of music, lights, and life <br />
               join us this summer and feel the vibe!
             </p>
