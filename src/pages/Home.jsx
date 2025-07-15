@@ -28,7 +28,7 @@ function Home({ darkMode }) {
         <div className="w-full lg:w-[60%] flex justify-center items-center">
           <div className="w-full flex flex-col items-center gap-8">
             <h1 className="hidden lg:block text-4xl lg:text-6xl font-bold">
-              Welcome to FestivalApp
+              Welcome to Festival
             </h1>
 
             <div className="flex flex-col gap-4">
